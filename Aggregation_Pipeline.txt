@@ -1,3 +1,5 @@
+Match :-
+
 db.students.aggregate([
     {$match : {class : "BCA"}}
 ])
@@ -13,15 +15,22 @@ db.students.aggregate([
     ]}}
 ])
 
+
+Count :-
+
 db.students.aggregate([
     {$match : {age : {$gt : 20}}},
     {$count : "names"}
 ])
 
+Sort :-
+
 db.students.aggregate([
     {$match : {age : {$gt : 20}}},
     {$sort : {name:1,age : 1}}
 ])
+
+Project:-
 
 db.students.aggregate([
     {$match : {age : {$gt : 20}}},
@@ -36,9 +45,13 @@ db.students.aggregate([
     }}
 ])
 
+Sort By Count :-
+
 db.students.aggregate([
     {$sortByCount : "$course"}
 ])
+
+Limit :-
 
 db.students.aggregate([
     {$match: {age: {$gt:20}}},
@@ -46,6 +59,8 @@ db.students.aggregate([
     {$project : {name:1,course:1,_id:0 }},
     {$limit:3}
 ])
+
+Skip :-
 
 db.students.aggregate([
     {$match: {age: {$gt:20}}},
@@ -62,3 +77,145 @@ db.students.aggregate([
 -----------
 
 Group operator :-
+
+db.students.aggregate([{
+    $group : {
+        _id : "$course"
+    }
+}])
+
+Sum :-
+
+db.students.aggregate([{
+    $group : {
+        _id : "$course",
+        count : {$sum : 1}
+    }
+}])
+
+Group with match :-
+
+db.students.aggregate([
+    {
+        $match : {age : {$gt : 20}}
+    },
+    {
+        $group : {
+            _id : "$course",
+            count : {$sum : 1}
+        }
+    }
+])
+
+Count :-
+
+db.students.aggregate([
+    {
+        $group : {
+            _id : "$course",
+            count : {$count : {}}
+        }
+    }
+])
+
+Group with Sort :-
+
+db.students.aggregate([
+    {
+        $group : {
+            _id : "$course",
+            count : {$count : {}}
+    }},
+    {
+        $sort : {count : -1}
+    }
+])
+
+Push :-
+
+db.students.aggregate([
+    {
+        $group : {
+            _id : "$course",
+            Students : {$push : "$name"}
+        }
+    }
+])
+
+db.students.aggregate([
+    {
+        $group : {
+            _id : "$age",
+            Students : {$push : "$$ROOT"}
+        }
+    }
+])
+
+Add to Set :-
+
+db.students.aggregate([
+    {
+        $group : {
+            _id : "$course",
+            Students : {$addToSet : "$name"}
+        }
+    }
+])
+
+Maximum Age (max) :-
+
+db.students.aggregate([
+    {
+        $group : {
+            _id : "$course",
+            Students : {$max:"$age"}
+        }
+    }
+])
+
+Minimum Age (min) :-
+
+db.students.aggregate([
+    {
+        $group : {
+            _id : "$course",
+            Students : {$min:"$age"}
+        }
+    }
+])
+
+Average Age (avg) :-
+
+db.students.aggregate([
+    {
+        $group : {
+            _id : "$course",
+            Students : {$avg:"$age"}
+        }
+    }
+])
+
+db.students.aggregate([
+    {
+        $group : {
+            _id : null,
+            Students : {$avg:"$age"}
+        }
+    }
+])
+
+Median :-
+
+db.students.aggregate([
+    {
+        $group : {
+            _id : "$course",
+            Median_age : {
+                $median : {
+                    input : "$age",
+                    method : 'approximate'
+                }
+            }
+        }
+    }
+])
