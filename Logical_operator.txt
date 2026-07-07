@@ -1,0 +1,60 @@
+Logical And :-
+
+db.student.find({
+    $and: [
+        {age:{$gt:18}},
+        {course:"BTech"}
+    ]
+})
+
+-
+
+And with Projection : - 
+
+db.student.find({
+    $and : [
+        {age:{$gt:18}},
+        {course:"BTech"}
+    ]
+},
+{name:1,course:1,age:1,_id:0})
+
+-----------
+
+Logical Or : -
+
+db.students.find({
+    $or : [
+        {age : {$gt:26}},
+        {course:"BSc"}
+    ]
+})
+
+------------
+
+Logical Nor :-
+
+db.students.find({
+    $nor:[
+        {age : 23},
+        {course:"BIT"}
+    ]
+})
+
+------------
+Logical Not : -
+
+db.students.find({
+    age:{$not : {$eq:23}}
+})
+
+-----------
+
+Deleting using Logical Operators :-
+
+db.students.deleteMany({
+    $and:[
+        {age:{$gt:20}},
+        {course:"BTech"}
+    ]
+})

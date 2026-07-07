@@ -1,0 +1,45 @@
+db.students.insertOne(
+
+    {name:"Margherete",age:19,course:"BTech",skills:["HTML","CSS","Javascript"]},
+)
+
+db.students.insertMany([
+    {_id:1, name:"Akshay Kumar",age:23,course:"BCA"},
+    {_id:2, name:"Salman Khan",age:24,course:"BTech"},
+    {_id:3, name:"Shahid Kapoor",age:20,course:"BSc"},
+    {_id:4, name:"John Abraham",age:19,course:"BCA"},
+    {_id:5, name:"Amir Khan",age:24,course:"BTech"},
+    {_id:6, name:"Salman Khan",age:21,course:"BSc"},
+    {_id:7, name:"Suniel Shetty",age:22,course:"BCA"},
+    {_id:8, name:"Kartik Aryan",age:20,course:"BTech"},
+    
+])
+
+db.student.insertMany([
+    {name:"Alice", age:28, course:"BSc"},
+    {name:"Bob", age:32, course:"BTech"}
+    ])
+
+db.students.find()
+
+====================
+
+Testing :-
+
+db.createCollection("monthlyBudget")
+
+db.monthlyBudget.insertMany([
+    {_id:1, category:"Food", budget:400, spent:450},
+    {_id:2, category:"Drinks", budget:100, spent:150},
+    {_id:3, category:"Clothes", budget:100, spent:50},
+    {_id:4, category:"Misc", budget:500, spent:300},
+    {_id:5, category:"Travel", budget:200, spent:850}
+])
+
+-
+
+db.sales.insertMany([
+    {_id:1, product:"Apple Iphone 13", cost:800, price:1000},
+    {_id:2, product:"Samsung Galaxy S21", cost:700, price:950},
+    {_id:3, product:"Apple watch", cost:300, price:350},
+])

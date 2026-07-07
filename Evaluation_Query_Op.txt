@@ -1,0 +1,34 @@
+Regex Operations :-
+
+Search pattern :
+db.students.find({name:{$regex:"rete"}})
+-
+Case insensitive :-
+db.students.find({name:{$regex:/Vid/i}})
+-
+Search  Starting character :-
+db.students.find({name:{$regex:"^M"}})
+-
+Search Ending character:-
+db.students.find({name:{$regex:"a$"}})
+
+=======================================
+
+Expr :-
+
+db.monthlyBudget.find({
+    $expr : {$gt : ["$spent","$budget"]}
+})
+-
+db.sales.find({
+    $expr: {$gt:["$price",
+    {$multiply: ["$cost",1.2]}]}
+})
+
+==================================
+
+Mod :-
+
+db.sales.find({
+    cost : {$mod : [7,0]}
+})

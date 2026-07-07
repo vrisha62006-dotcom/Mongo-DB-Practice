@@ -1,0 +1,16 @@
+db.students.find({age:{$eq:23}})
+
+db.students.find({age:{$ne:23}})
+
+db.students.find({age:{$gt:23}})
+
+db.students.find({age:{$gte:24}})
+
+db.students.find({age:{$lt : 23}})
+
+db.students.find({age:{$lte : 23}})
+
+db.students.find({skills:{$in : ["PHP","C++"]}})
+
+db.students.find({skills:{$nin : ["PHP","C++"]}})
+

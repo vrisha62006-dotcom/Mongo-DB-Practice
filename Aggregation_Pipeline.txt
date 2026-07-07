@@ -1,0 +1,64 @@
+db.students.aggregate([
+    {$match : {class : "BCA"}}
+])
+
+db.students.aggregate([
+    {$match : {age : {$gt : 20}}}
+])
+
+db.students.aggregate([
+    {$match : {$and : [
+        {age : {$gt : 20}},
+        {course : "BCA"}
+    ]}}
+])
+
+db.students.aggregate([
+    {$match : {age : {$gt : 20}}},
+    {$count : "names"}
+])
+
+db.students.aggregate([
+    {$match : {age : {$gt : 20}}},
+    {$sort : {name:1,age : 1}}
+])
+
+db.students.aggregate([
+    {$match : {age : {$gt : 20}}},
+    {$sort : {name:1,age : 1}},
+    {$project : {name : 1, _id : 0, course : 1}}
+])
+
+db.students.aggregate([
+    {$sort : {name:1,age : 1}},
+    {
+        $project : {name : 1, _id : 0, age : 1, isValidAge : {$gt : ["$age",20]}
+    }}
+])
+
+db.students.aggregate([
+    {$sortByCount : "$course"}
+])
+
+db.students.aggregate([
+    {$match: {age: {$gt:20}}},
+    {$sort: {age:1, name:1}},
+    {$project : {name:1,course:1,_id:0 }},
+    {$limit:3}
+])
+
+db.students.aggregate([
+    {$match: {age: {$gt:20}}},
+    {$sort: {age:1, name:1}},
+    {$project : {name:1,course:1,_id:0 }},
+    {$skip:2},
+    {$limit:3}
+])
+
+db.students.aggregate([
+    {$sample : {size : 2}}
+])
+
+-----------
+
+Group operator :-

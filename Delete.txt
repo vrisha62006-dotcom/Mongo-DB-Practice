@@ -1,0 +1,6 @@
+
+db.students.deleteOne({ _id: ObjectId('6a461747a4a77947050065eb')})
+
+db.students.deleteMany({course : 'BTech'})
+
+db.students.deleteMany({age:{$lt:20}})

@@ -1,0 +1,34 @@
+Find :-
+
+db.students.find({name:"Bob"})
+db.students.findOne({age:23})
+
+-
+
+Find with Projection :-
+
+db.students.find({},{name:1,course:1,_id:0})
+
+db.students.find({}).projection({name:1,course:1,_id:0})
+
+-
+
+Find with Count :-
+
+db.students.countDocuments({age:23})
+
+-
+
+Find with Sort :-
+
+db.students.find().sort({name:1})
+db.students.find().sort({name:-1})
+
+-
+
+Find with Limited records :-
+
+db.students.find().limit(3)
+
+db.students.find().limit(3).skip(3)
+

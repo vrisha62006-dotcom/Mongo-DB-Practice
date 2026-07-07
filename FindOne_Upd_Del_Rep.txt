@@ -1,0 +1,79 @@
+Find One and Update :-
+
+db.students.findOneAndUpdate(
+    {name:"Kartik Aryan"},
+    {$set:{age:30}}
+)
+-
+Return Document :-
+
+db.students.findOneAndUpdate(
+    {name:"Kartik Aryan"},
+    {$set:{age:20}},
+    {returnDocument:"after"}
+)
+-
+Projection :-
+
+db.students.findOneAndUpdate(
+    {name:"Kartik Aryan"},
+    {$set:{age:25}},
+    {
+        returnDocument:"after",
+        projection : {name:1, age:1, _id:0}
+    }
+)
+-
+Upsert:-
+
+db.students.findOneAndUpdate(
+    {name:"Sachin Tendulkar"},
+    {$set:{_id :9,age:25,course:"BIT"}},
+    {
+        returnDocument:"after",
+        projection : {name:1, age:1, _id:0},
+        upsert : true
+    }
+)
+-
+Sort :-
+
+db.students.findOneAndUpdate(
+    {name:"Salman Khan"},
+    {$set : {course:"BIT"}},
+    {
+        sort : {age : 1}
+    }
+)
+
+================================
+
+Find One and Replace :-
+
+db.students.findOneAndReplace(
+    {name : "Akshay Kumar"},
+    {name:"Sanjay Dutt", age:35, course : "BCom"},
+    {
+        returnDocument : "after"
+    }
+)
+
+=================================
+
+Find One and Delete :-
+
+db.students.findOneAndDelete(
+    {name:"Amir Khan"}
+)
+-
+Projection :-
+db.students.findOneAndDelete(
+    {name:"John Abraham"},
+    {projection : {name:1}}
+)
+-
+Sort :-
+db.students.findOneAndDelete(
+    {name:"Salman Khan"},
+    {sort : {age : 1}}
+)

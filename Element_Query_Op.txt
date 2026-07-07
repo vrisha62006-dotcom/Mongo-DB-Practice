@@ -1,0 +1,30 @@
+Exists :-
+
+db.students.find({
+    course : {$exists:false}
+})
+
+-
+
+db.students.find({
+    course : {$exists:true}
+})
+
+===================
+Type :-
+
+db.students.find({
+    age : {$type:"double"}
+})
+
+db.students.find({
+    age : {$type:["double","string"]}
+})
+
+db.students.find({
+    age : {$type:1}
+})
+
+db.students.find({
+    age : {$type:16}
+})

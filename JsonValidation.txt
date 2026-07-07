@@ -1,0 +1,113 @@
+For new collection :-
+
+db.createCollection("student",{
+    validator:{
+        $jsonSchema:{
+            title:"Student Object Validation",
+            required : ["name", "age", "course"],
+
+            properties:{
+                name:{
+                bsonType:"string",
+                description:"Name should be in string format",
+                },
+
+                age:{
+                bsonType:"int",
+                minimum:5,
+                maximum:60,
+                description:"Age should be between 5 to 60 years in int format"
+                },
+
+                course:{
+                    bsonType:"string",
+                    enum:["BCA","BTech","BSc"],
+                    description:"Course must be in BCA, BTech or BSc"
+                }
+
+            }
+        }
+    }
+})
+
+-
+
+db.student.insertOne({
+    name:12, age:"20", course:"BCA"
+})
+
+--------------------------
+For existing collection : 
+
+db.runCommand({
+    collMod : "personal",
+    validator:{
+        $jsonSchema:{
+            required:["name","age","married","dob","weight","kids","address"],
+            properties:{
+                name:{
+                    bsonType:"string",
+                    description:"Name must be required in string"
+                },
+                age:{
+                    bsonType:"int",
+                    minimum:20,
+                    maximum:35,
+                    description:"Age must be required between 20 to 35"
+                },
+                married:{
+                    bsonType:"bool",
+                    description:"Married must be required in boolean"
+                },
+                dob:{
+                    bsonType:"date",
+                    description:"DOB must be required in date"
+                },
+                weight:{
+                    bsonType:"double",
+                    description:"Weight must be required in double"
+                },
+                kids:{
+                    bsonType:"int",
+                    description:"Kids must be required in int"
+                },
+                hobby:{
+                    bsonType:"array",
+                    items:{bsonType:"string"},
+                    description:"Hobbies must be required in string"
+                },
+                address:{
+                    bsonType:"object",
+                    required:["street","city","zip"],
+                    properties:{
+                        street:{
+                            bsonType:"string",
+                            description:"Street must be required in string"
+                        },
+                        city:{
+                            bsonType:"string",
+                            description:"City must be required in string"
+                        },
+                        zip:{
+                            bsonType:"string",
+                            description:"Zip code must be required in string"
+                        }
+                    },
+                },
+            }
+        }
+    }
+})
+
+-
+
+db.personal.insertOne({
+    name:"Antara Sharma",
+    age : 34,
+    married : true,
+    dob : ISODate('2000-10-01T07:30:00.000Z'),
+    weight : 56.63,
+    kids : 2,
+    hobbies : ["music","drawing","skating"],
+    address : {street : '123 Main street', city : 'Goa', zip : "10001"}
+})

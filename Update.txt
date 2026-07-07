@@ -1,0 +1,114 @@
+db.student.updateOne(
+    {age:32},
+    {$set:{name:"Saira", course:"BCA"}}
+)
+
+-
+
+db.student.updateMany(
+    {course:"BCA"},
+    {$set:{course:"BTech"}}
+)
+
+-------
+
+db.student.updateOne(
+    {name : "Saira"},
+    {$inc:{age:1}}
+)
+
+-
+
+db.student.updateOne(
+    {name:"Anatara"},
+    {$mul:{age:2}}
+)
+
+-
+
+db.student.updateOne(
+    {name:"Anatara"},
+    {$set:{name:"Antara"}}
+)
+ 
+-
+
+db.students.updateOne(
+    {name:"Katie"},
+    {$unset : {age:""}}
+)
+
+-
+
+db.students.updateMany(
+    {},
+    {$rename:{"skills":"coding_skills"}}
+)
+
+db.students.updateMany(
+    {},
+    {$rename:{"coding_skills":"skills"}}
+)
+
+-
+
+db.students.updateMany(
+    {},
+    {$currentDate:{lastModified:true}}
+)
+
+-
+
+db.students.updateOne(
+    {name:"Margherete"},
+    {$min : {age:20}}
+)
+
+db.students.updateOne(
+    {name:"Margherete"},
+    {$max : {age:25}}
+)
+
+--------
+Array Operations : 
+
+db.students.updateOne(
+    { _id: ObjectId('6a461747a4a77947050065e9')},
+    {$push : {skills:"HTML"}}
+)
+
+db.students.updateOne(
+    { _id: ObjectId('6a461747a4a77947050065e9')},
+    {$addToSet : {skills:"SQL"}}
+)
+
+db.students.updateOne(
+    { _id: ObjectId('6a461747a4a77947050065e9')},
+    {$pop : {skills:1}}
+)
+
+db.students.updateOne(
+    { _id: ObjectId('6a461747a4a77947050065e9')},
+    {$pop : {skills:-1}}
+)
+
+db.students.updateOne(
+    { _id: ObjectId('6a461747a4a77947050065e9')},
+    {$pull : {skills:"Python"}}
+)
+
+db.students.updateOne(
+    {_id: ObjectId('6a461747a4a77947050065ea')},
+    {$pullAll : {skills:["SQL","Express Js"]}}
+)
+db.students.replaceOne(
+    {_id: ObjectId('6a461747a4a77947050065ea')},
+    {name:"Katie Clarke",age:23,course:"BTech",skills:["Java","PHP"]}
+)
+
+-
+
+db.students.updateMany(
+    {age:{$lt:20}},
+    {$set : {course : 12}}
+)
